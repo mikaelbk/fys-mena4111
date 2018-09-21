@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{cancel}
+
+\author{Mikael B. Kiste}
+\title{FYS-MENA4111 oblig 4}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	\section{Functional derivatives - part one}
+	We can use the standard, although mathematically less rigorous, definition of the derivative
+	\begin{equation}
+		\pdv{F[f]}{f(y)} = \lim\limits_{\varepsilon\to 0}\frac{F[f(x)+\varepsilon\delta(x-y)]-F[f(x)]}{\varepsilon}
+	\end{equation}
+	to get the derivative of the functional $$F[f] = \int f(x)^3\dd{x}$$
+	By inserting into the definition we get
+	\begin{align*}
+		\lim\limits_{\varepsilon\to 0} \frac{\int[f(x)+\varepsilon\delta(x-y)]^3\dd{x}-\int[f(x)]^3\dd{x}}{\varepsilon}\\
+		= \lim\limits_{\varepsilon\to 0} \frac{
+		\int[ \cancel{f^3(x)} + 3f(x)^2\varepsilon\delta(x-y) + 3f(x)[\varepsilon\delta(x-y)]^2  + [\varepsilon\delta(x-y)]^3 \cancel{-  f^3(x)}]\dd{x}} {\varepsilon} \\
+		= \lim\limits_{\varepsilon\to 0}
+		\int[3f(x)^2\delta(x-y)]\dd{x} + \lim\limits_{\varepsilon\to 0} \int[3f(x)\varepsilon\delta^2(x-y)+\varepsilon^2\delta^3(x-y)]\dd{x}\\
+		= \lim\limits_{\varepsilon\to 0} \int[3f(x)^2\delta(x-y)]\dd{x}\\
+		= 3f(y)^2
+	\end{align*}
+	Where we use the substitution $\delta f(x) \to \varepsilon\delta(x-y)$. The first line is a simple substitution. The second line shows the cubed term multiplied out and two terms that kill each other. In the following line the epsilons have been accounted for, term by term, and any remaining epsilon-terms goes to zero in the limit and disappear. The last line is the most intricate to understand. But it does follow naturally from the definition of the dirac-delta function that the integration will return zero for all instances where $x\neq y$, but still the "area" of the dirac delta is exactly one in the integration. Given that the variable names, in the end, are arbitrary we can write this as the following
+	\begin{equation*}
+		\pdv{F[f]}{f(x)}=3f(x)^2
+	\end{equation*}
+	
+	\newpage
+	\section{Functional derivatives - part two}
+	In this section it will be useful to use the following relation
+	\begin{equation}\label{funals2}
+		\delta F[f] = F[f+\delta f]-F[f] = \int\pdv{F[f]}{f(x)}\delta f(x)\dd{x}
+	\end{equation}
+	\subsection{}
+	If the functional is $F[f] = \int f(x)^3\dd{x}$ we can insert into equation \ref{funals2}
+	\begin{align*}
+		\int\pdv{F[f]}{f(x)}\delta f(x)\dd{x} = \int (f+\delta f)^3\dd{x} - \int f^3 \dd{x}\\
+		\pdv{F[f]}{f(x)} = \frac{(f+\delta f)^3 - f^3}{\delta f}\\
+		= \frac{[\cancel{f^3} + 3f^2\cancel{\delta f} + 3f(\delta f)^{\cancel{2}} + (\delta f)^{3-1} \cancel{- f^3}]}{\cancel{\delta f}}\\
+		= 3f^2
+	\end{align*}
+	Where $\delta $ terms are infinitesimal and neglected
+	\subsection{}
+	If the functional is $F[f] = \int 4f(x)g(x)^3\dd{x}$ we can insert into equation \ref{funals2}
+	\begin{align*}
+		\int 4[f+\delta f]g^3\dd{x}-\int 4fg^3\dd{x} = \int\pdv{F[f]}{f(x)}\delta f(x)\dd{x}\\
+		\cancel{4fg^3}+4\delta fg^3 \cancel{- 4fg^3} = \pdv{F[f]}{f(x)}\delta f(x)\\
+		\pdv{F[f]}{f(x)} = 4g^3
+	\end{align*}
+	
+	\section{Functional or not?}
+		Consider the 2-electron problem and Hartree approximation
+	\subsection{Density}
+		We have an expression for the density
+		\begin{align*}
+			n(\vb{r})=N_e \int \abs{\Psi(\vb{r},\vb{r}')}^2\dd\vb{r}'=N_e \int \psi_1(\vb{r})^* \psi_2(\vb{r}' )^* \psi_1(\vb{r})\psi_2(\vb{r}')\dd \vb{r}'
+		\end{align*}
+		A functional takes a function as input and produces a number.The above equation is a functional because integrating the wavefunction over all of space should give the number 1 per normalized wavefunction (and some other constant for other converging integrals). The constant $N_e$ does not change the fact that a number is returned. (note that there is a difference between a true variable and an unknown constant)
+	\subsection{Previous functionals}
+		Are the derivatives of the functionals in section 2 also functionals? The answer is no, the fact that we have the integrals is crucial to produce a number from the functions that goes into the functionals. For instance, in the first example, simply squaring and multiplying a function with three does not give a uniquely determined number.
+	\section{Hartree total energy}
+	The lecture notes contains a derivation of how to get an expression for the total Hartree energy. Using equation 4.16 and 4.7 we arrive at equation 4.20
+	
+\end{document}

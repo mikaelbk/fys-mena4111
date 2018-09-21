@@ -1,0 +1,20 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{fontenc}
+\usepackage{graphicx}
+
+\usepackage[dvips]{hyperref}
+
+\date{09/04/18}
+\title{FYS-MENA4111 - lab report 1}
+\author{Mikael B. Kiste}
+
+\begin{document}
+  \maketitle
+  \section{introduction}
+    In this laboratory assignment we got an introduction in how to navigate in the terminal to access the Abel supercomputer and run our simulations.
+    There are quite a number of useful commands, some new to me and some I was used to. 
+\end{document}

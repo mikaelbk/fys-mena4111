@@ -1,0 +1,61 @@
+Starting job 23047367 ("si_bulk") on c16-34 at Tue Sep 4 12:55:45 CEST 2018
+/var/spool/slurmd/job23047367/slurm_script: line 20: ulimit: max memory size: cannot modify limit: Operation not permitted
+ running on    4 total cores
+ distrk:  each k-point on    4 cores,    1 groups
+ distr:  one band on    4 cores,    1 groups
+ using from now: INCAR     
+ vasp.5.4.1 05Feb16 (build Aug 09 2016 09:44:09) complex                        
+  
+ POSCAR found type information on POSCAR  Si
+ POSCAR found :  1 types and       8 ions
+
+ ----------------------------------------------------------------------------- 
+|                                                                             |
+|  ADVICE TO THIS USER RUNNING 'VASP/VAMP'   (HEAR YOUR MASTER'S VOICE ...):  |
+|                                                                             |
+|      You have a (more or less) 'small supercell' and for smaller cells      |
+|      it is recommended  to use the reciprocal-space projection scheme!      |
+|      The real space optimization is not  efficient for small cells and it   |
+|      is also less accurate ...                                              |
+|      Therefore set LREAL=.FALSE. in the  INCAR file                         |
+|                                                                             |
+ ----------------------------------------------------------------------------- 
+
+ LDA part: xc-table for Pade appr. of Perdew
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ WARNING: small aliasing (wrap around) errors must be expected
+ FFT: planning ...
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.434038181442E+02    0.43404E+02   -0.79690E+03   420   0.692E+02
+DAV:   2    -0.401213073813E+02   -0.83525E+02   -0.79250E+02   560   0.130E+02
+DAV:   3    -0.439506863363E+02   -0.38294E+01   -0.37857E+01   560   0.271E+01
+DAV:   4    -0.440124622733E+02   -0.61776E-01   -0.61650E-01   532   0.420E+00
+DAV:   5    -0.440140804018E+02   -0.16181E-02   -0.16175E-02   521   0.532E-01    0.600E+00
+RMM:   6    -0.435184804582E+02    0.49560E+00   -0.27596E-01   423   0.220E+00    0.358E+00
+RMM:   7    -0.432919738513E+02    0.22651E+00   -0.60517E-01   426   0.335E+00    0.299E-01
+RMM:   8    -0.432972782870E+02   -0.53044E-02   -0.18068E-02   460   0.617E-01    0.444E-02
+RMM:   9    -0.432976709863E+02   -0.39270E-03   -0.12937E-03   487   0.173E-01    0.218E-02
+RMM:  10    -0.432977443760E+02   -0.73390E-04   -0.23922E-04   466   0.833E-02    0.660E-03
+RMM:  11    -0.432977360139E+02    0.83620E-05   -0.16793E-05   485   0.200E-02    0.169E-03
+RMM:  12    -0.432977357010E+02    0.31288E-06   -0.96929E-07   320   0.515E-03
+   1 F= -.43297736E+02 E0= -.43297736E+02  d E =0.000000E+00
+
+Currently Loaded Modulefiles:
+  1) intel/2015.3       4) gnuplot/5.0.4      7) vasp/5.4.1.Feb16
+  2) libffi/3.0.13      5) vesta/3.3.8
+  3) python2/2.7.10     6) intel/2016.1
+
+Job script resource usage:
+       JobID  MaxVMSize     MaxRSS 
+------------ ---------- ---------- 
+23047367.ba+    215340K      3525K 
+
+Job step resource usage:
+       JobID    JobName  AllocCPUS  MaxVMSize     MaxRSS    Elapsed ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+23047367        si_bulk         16                         00:00:11      0:0 
+23047367.0    pmi_proxy          1    279832K       548K   00:00:09      0:0 
+
+Job 23047367 ("si_bulk") completed on c16-34 at Tue Sep 4 12:55:54 CEST 2018
