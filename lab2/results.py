@@ -35,7 +35,22 @@ for i in range(len(TOTEN)-1):
     totEnDiff.write(str((TOTEN[i+1]-TOTEN[i])*1e3) + " ")
 totEnDiff.close()
 
+def plot_converg(lim,data,name):
+	figure()
+	style = ['--r','--g']
+	plot(data[1:]-data[:-1],'-o')
+	for i in range(len(lim)):
+		plot(lim[i]*ones(9),style[i])
+		plot(-lim[i]*ones(9),style[i])
+	savefig(name)
+
+
+plot_converg([3e-3],TOTEN,"energyDiff.pdf")
+plot_converg([3],Press,"pressDiff.pdf")
+plot_converg([5e-2,5e-3],MxForce,"forceDiff.pdf")
+plot_converg([1e-2],BandGap,"bandgapDiff.pdf")
 #plotting
+"""
 figure()
 subplot(2,2,1)
 plot(TOTEN[1:]-TOTEN[:-1],'-o')
@@ -56,7 +71,8 @@ plot(BandGap[1:]-BandGap[:-1],'-o')
 plot(1e-2*ones(9),'--r')
 plot(-1e-2*ones(9),'--r')
 ylim(-0.015,0.015)
-savefig("converge.png")
+savefig("converge.pdf")
+"""
 
 figure()
 plot(cutOff,TOTEN,'-o')
@@ -64,7 +80,7 @@ grid()
 title("Total energy as function of various cut off energies")
 xlabel("Energy cut off [eV]")
 ylabel("Total energy [eV]")
-savefig("TOTENplot.png")
+savefig("TOTENplot.pdf")
 
 figure()
 plot(cutOff,MxForce,'-o')
@@ -72,4 +88,4 @@ grid()
 title("Maximum force as function of various cut off energies")
 xlabel("Energy cut off [eV]")
 ylabel("Total energy [eV]")
-savefig("MxForcePlot.png")
+savefig("MxForcePlot.pdf")
