@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{cancel}
+
+\author{Mikael B. Kiste}
+\title{FYS-MENA4111 oblig 5}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	\section{Density functional theory}
+	In density functional theory we consider the probability density $n(\vb{r})=\abs{\Psi_0(\vb{r})}^2$ instead of the wavefunctions. The specific expression for a density that solves the many-particle equation within the original DFT has not yet been derived (although we can approximate it). All ground state properties are determined by the ground state density and, in the same manner you can solve the shrodinger equation if you have the potential, you can get the potential if you have the ground state density.
+		
+	\section{Hohenberg-Kohn theorem one}
+	The first theorem implies that the potential is determined uniquely by the ground state energy. It uses a proof by contradiction by showing that two different external potentials can not give the same ground state density without encountering a contradiction. The two potentials $V_{en}(\vb{r})$ and $V_{en}'(\vb{r})$ has the same ground state densities $n_0(\vb{r})$ but different Hamiltonians $H$ and $H'$ and different ground state eigenfunctions $\Psi_0(\vb{r})$ and $\Psi'_0(\vb{r})$ with different eigenvalues $E_0(\vb{r})$ and $E'_0$. Firstly we know that
+	$$E_0 = \bra{\Psi_0}H\ket{\Psi_0} < \bra{\Psi'_0}H\ket{\Psi'_0}$$
+	$$E'_0 = \bra{\Psi'_0}H'\ket{\Psi'_0} < \bra{\Psi_0}H'\ket{\Psi_0}$$
+	Where the non-prime wavefunctions in the first equation are ground states for the first system and primed wavefunctions in the second equation are ground states for the second system. Essentially, the energy is minimized for the ground states in the respective systems. Simply expanding the Hamiltonian into its constituent parts gives us
+	$$ E_0 = \bra{\Psi_0}H\ket{\Psi_0} = \bra{\Psi_0}T+U_{ee}+U{en}\ket{`psi_0}$$
+	Where the $e$ and $n$ subscrifts indicate electron and nucleus. Knowing the bra ket notation we can pull one of the potential terms out.
+	$$ E_0 = \bra{\Psi_0} T+U_{ee} \ket{\Psi_0} + \int \Psi^*_0(\vb{r})V_{en}(\vb{r})\Psi_0(\vb{r})\dd{\vb{r}}$$
+	We see that we have the density inside the integral
+	$$ E_0 = \bra{\Psi_0} T+U_{ee} \ket{\Psi_0} + \int V_{en}(\vb{r})n_0(\vb{r})\dd{\vb{r}}$$
+	According to our original statement this should be less than any other (non-ground) state in the system
+	$$ E_0 < \bra{\Psi'_0} T+U_{ee}+U_{en} \ket{\Psi'_0} $$
+	Simply adding and subtracting in the term $U'_{en}$ clarifies the next step
+	$$ = \bra{\Psi'_0} T+U_{ee}+U'_{en}+(U_{en}-U'_{en}) \ket{\Psi'_0} $$
+	Again we can pull out terms from the integral
+	$$ = \bra{\Psi'_0} T+U_{ee}+U'_{en} \ket{\Psi'_0} + \int (V_{en}(\vb{r})-V'_{en}(\vb{r}))n_0(\vb{r})\dd{\vb{r}}$$
+	The only thing differentiating the Hamiltonians was the external potential $V_{en}$ and we therefore see that we actually have the Hamiltonian for the second system inside the bra-kets now
+	$$ = \bra{\Psi'_0} H' \ket{\Psi'_0} + \int (V_{en}(\vb{r})-V'_{en}(\vb{r}))n_0(\vb{r})\dd{\vb{r}}$$
+	This, then, takes us again all the way back to the original expression we had for the energy.
+	$$ = E'_0 + \int \qty(V_{en}(\vb{r})-V'_{en}(\vb{r}))n_0(\vb{r})\dd{\vb{r}}$$
+	So what we found was that
+	\begin{equation}
+		E_0 < E'_0 + \int \qty(V_{en}(\vb{r})-V'_{en}(\vb{r}))n_0(\vb{r})\dd{\vb{r}}
+	\end{equation}
+	And, using the second original equation, we can also derive
+	\begin{equation}
+		E'_0 = E_0 + \int \qty(V'_{en}(\vb{r})-V_{en}(\vb{r}))n_0(\vb{r})\dd{\vb{r}}
+	\end{equation}
+	We can take the sum of these equations by adding left side with left side, and right side with right side. In this case, we see that the integrals disappear and we are left with
+	$$ E_0+E'_0 < E_0 +E'_0 $$
+	Which is a contradiction. Thus, it is not possible for two different potentials to have the same ground state density and $V_{en}(\vb{r})$ is determined uniquely by $n_r(\vb{r})$.
+	
+	\section{Hohenberg-Kohn theorem two}
+	The second theorem states that there exists a variational principle for the energy density functional such that, if $n$ is not the ground-state density, then $$E[n_0] < E[n]$$. The ground state energy is the smallest energy possible (for a given potential) and the corresponding density is the ground-state density.
+	Here we use the first theorem. All ground-state properties are uniquely determined from $n(\vb{r})$ and therefore each such property can be viewed as a functional. Therefore we should be able to express the energy functional as functionals of its constituent energies; kinetic, potential and electron-electron interactions.
+	$$E[n] = T[n]+U_{ee}[n]+U{en}[n]$$
+	But again we can use the definition of the electron-nuclei functional
+	$$E[n] = T[n]+U_{ee}[n]+\int V_{en}(\vb{r})n(\vb{r})\dd{\vb{r}}$$
+	Here the first two terms are grouped into one functional and named simply the Hohenberg-Kohn functional $F[n]$
+	$$E[n] = F[n]+\int V_{en}(\vb{r})n(\vb{r})\dd{\vb{r}}$$
+	Since the Hohenberg-Kohn functional does not depend on the external potential $V{en}(\vb{r})$ then we know by the first theorem that it has to be universal or have the same form for all systems of electrons. Considering now the energy, energy functional and bra-ket notation of a specific system we can start out, as we did last time, with an inequality of this type
+	$$ E_0 = E[n_0]=\bra{\Psi_0}H\ket{\Psi_0}<\bra{\Psi}H\ket{\Psi} = E[n] $$
+	From here there are different techniques for solving the problem, either by utilizing the variational method or from normalized wavefunctions, but in the end you find that when you minimize the energy with respect to density you arrive at the ground-state density and that this has energy lower than any other density. 
+\end{document}
